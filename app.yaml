@@ -1,0 +1,31 @@
+
+application: tubesget
+version: 2
+runtime: php
+api_version: 1
+
+handlers:
+- url: /
+  script: main.php
+
+- url: /index\.html
+  script: main.php
+
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /(.*\.(gif|png|jpg))$
+  static_files: static/\1
+  upload: static/.*\.(gif|png|jpg)$
+  
+- url: /(.+\.php)$
+  script: \1
+
+- url: /admin/.*
+  script: admin.php
+  login: admin
+
+- url: /.*
+  script: not_found.php
+  
+  
